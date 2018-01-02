@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block  title %}主机添加{% endblock %}
+{% block header-css %}
+
+    {% load	bootstrap3 %}
+{% endblock %}
+
+
+{% block page-content %}
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>主机更新</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="/index.html">主页</a>
+                </li>
+                <li>
+                    <a href="asset.html">资产管理</a>
+                </li>
+                <li class="active">
+                    <strong>主机更新</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>主机更新</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#">选项 1</a>
+                            </li>
+                            <li><a href="#">选项 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal" class="form-horizontal"
+                          action=""
+                          method="post" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+                        {% if form.no_field_errors %}
+                            <div class="alert alert-danger" style="margin: 20px auto 0px">
+                                {{ form.non_field_errors }}
+                            </div>
+                        {% endif %}
+
+
+                        <div class="form-group">
+                            <div class="col-sm-5 col-sm-offset-3">
+                                {% bootstrap_field form.operator layout="horizontal" %}
+                                {% bootstrap_field form.project layout="horizontal" %}
+                                {% bootstrap_field form.version layout="horizontal" %}
+                                {% bootstrap_field form.describe_name layout="horizontal" %}
+                                {% bootstrap_field form.hostname layout="horizontal" %}
+                                {% bootstrap_field form.os layout="horizontal" %}
+                                {% bootstrap_field form.cpu_num layout="horizontal" %}
+                                {% bootstrap_field form.memory layout="horizontal" %}
+                                {% bootstrap_field form.disk layout="horizontal" %}
+                                {% bootstrap_field form.private_ip layout="horizontal" %}
+                                {% bootstrap_field form.public_ip layout="horizontal" %}
+                                {% bootstrap_field form.passwd layout="horizontal" %}
+                                {% bootstrap_field form.ssh_port layout="horizontal" %}
+                                {% bootstrap_field form.asset_type layout="horizontal" %}
+                                {% bootstrap_field form.status layout="horizontal" %}
+                                {% bootstrap_field form.memo layout="horizontal" %}
+                            </div>
+                        </div>
+                        
+                        <div class="hr-line-dashed"></div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+
+                                <button class="btn btn-primary" type="submit">提交</button>
+                                <button class="btn btn-white" type="reset">重置</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    {% block footer-js %}
+        <script>
+            $(document).ready(function () {
+                $('.select2').select2();
+            })
+        </script>
+
+
+    {% endblock %}
+
+
+
+{% endblock %}
+
+
