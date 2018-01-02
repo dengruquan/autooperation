@@ -4,7 +4,7 @@
 #免密码登录
 #============================
 host_path = r"/data/ansible/playbook/hosts"
-command = r"/data/ansible/playbook/ssh-addkey.yml"
+command =" /usr/bin/ansible-playbook -i /data/ansible/playbook/hosts /data/ansible/playbook/ssh-addkey.yml -v"
 
 
 def sshkey(obj):
@@ -34,24 +34,18 @@ def WriteHost(obj):
 def DoCommamd(cmd):
     '''执行shell命令'''
     import os
-    print os.system(cmd)
+    print (os.system(cmd))
 
 
 class A():
     def __init__(self):
-       self.public_ip = "192.168.15.15" 
+    
+       self.public_ip = "xxx" 
        self.ssh_port = 22
        self.user = "kg"
-       self.passwd = "kg88888888"
-    
+       self.passwd = ""
 if __name__ == "__main__":
-    # obj = {
-    # "public_ip": "192.168.15.15",
-    # "ssh_port" : 22,
-    # "ssh_user" : "kg",
-    # "ssh_pass" : "kg88888888"
-    # }
-    # obj = A()
-    # sshkey(obj)
-    DoCommamd("cat /data/ansible/playbook/ssh-addkey.yml")
+    obj = A()
+    sshkey(obj)
+    #DoCommamd(" /usr/bin/ansible-playbook -i /data/ansible/playbook/hosts /data/ansible/playbook/ssh-addkey.yml")
     
