@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "cmdb.apps.CmdbConfig",
     'bootstrap3',
     "autooperation",
-    "jobs",
+    "jobs.apps.JobsConfig",
     "django_celery_results",
     "django_celery_beat",
 
