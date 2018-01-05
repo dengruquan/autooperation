@@ -1,4 +1,4 @@
-from celery import celery
+from celery import Celery
 import os
 
 #set the default Django settings module for the 'celery' program.
