@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'bootstrap3',
     "autooperation",
     "jobs.apps.JobsConfig",
-    "django_celery_results",
-    "django_celery_beat",
+    #"django_celery_results",
+    #"django_celery_beat",
 
 
 
