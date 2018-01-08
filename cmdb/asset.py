@@ -55,7 +55,7 @@ class AssetAdd(CreateView):
 
         #实现ssh免密码登录
         tasks.deal_sshkey.apply_async(
-            (obj.id, obj.public_ip, obj.ssh_port, obj.user, obj.passwd, common.Command))
+            (obj.id, obj.public_ip, obj.ssh_port, obj.user, obj.passwd, common.SSH_Command))
         return super(AssetAdd, self).get_success_url()
 
     def get_context_data(self, **kwargs):

@@ -3,12 +3,13 @@
 #调用ansible命令实现指定主机
 #免密码登录
 #============================
-Host_Path = r"/data/ansible/playbook/hosts"
+# Host_Path = r"/data/ansible/playbook/hosts"
+from . import common
 
 def WriteHost(hosts):
     '''编辑hosts内容'''
  
-    with open(Host_Path, "w") as f:
+    with open(common.Host_Path, "w") as f:
         f.write(hosts)
 
     
