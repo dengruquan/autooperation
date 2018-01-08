@@ -6,6 +6,8 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from .models import Host 
 from .forms import AssetForm
+from common import common
+from jobs imoprt tasks
 
 
 class AssetListAll(TemplateView):
@@ -47,11 +49,13 @@ class AssetAdd(CreateView):
         return super(AssetAdd, self).form_valid(form)
 
     def get_success_url(self):
-        #todo
         obj = Host.objects.get(hostname= self.asset_save)
         if obj:
             print("self.asset_save", obj)
-        #end
+
+        #实现ssh免密码登录
+        tasks.deal_sshkey.apply_async(
+            (obj.id, obj.public_ip, obj.ssh_port, obj.user, obj.passwd, common.Command))
         return super(AssetAdd, self).get_success_url()
 
     def get_context_data(self, **kwargs):
@@ -154,4 +158,23 @@ class AssetUpdate(UpdateView):
     def get_success_url(self):
         return super(AssetUpdate, self).get_success_url()
 
-        
+
+def asset_hardware_update(request):
+    ret = {'status': True, 'error': None, 'data': None}
+    if request.method == 'POST':
+        try:
+            id = request.POST.get('nid', None)
+            obj = Host.objects.get(id=id)
+            ip = obj.public_ip
+            port = obj.ssh_port
+            # username = obj.user
+            # password1 = obj.passwd
+            username = ""
+            password = ""
+
+            tasks.run(id, ip, port, username, password)
+        except:
+            print "asset_hardware_update error"
+            pass
+           
+    return HttpResponse(json.dumps(ret))
