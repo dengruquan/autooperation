@@ -6,6 +6,8 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from .models import Host 
 from .forms import AssetForm
+from common import common
+from jobs imoprt tasks
 
 
 class AssetListAll(TemplateView):
@@ -47,11 +49,12 @@ class AssetAdd(CreateView):
         return super(AssetAdd, self).form_valid(form)
 
     def get_success_url(self):
-        #todo
         obj = Host.objects.get(hostname= self.asset_save)
         if obj:
             print("self.asset_save", obj)
-        #end
+
+        #实现ssh免密码登录
+        tasks.deal_sshkey.apply_async((obj.public_ip, obj.ssh_port, obj.user, obj.passwd, common.Command), link = tasks.)
         return super(AssetAdd, self).get_success_url()
 
     def get_context_data(self, **kwargs):

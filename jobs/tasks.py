@@ -4,8 +4,15 @@ from subprocess import Popen, PIPE
 
 
 @shared_task
-def deal_sshkey(public_ip, ssh_port, user, passwd):
-	'''ssh免密码登录'''
+def deal_sshkey(public_ip, ssh_port, user, passwd, cmd):
+	'''
+    ssh免密码登录
+    @parameter public_ip : 主机外网ip
+    @parameter ssh_port : 主机ssh端口
+    @parameter user : 主机ssh登录用户
+    @parameter passwd : 主机外网密码
+    @parameter cmd : 实现ssh免密码登录命令
+    '''
     hosts = '''
     [{0}]
     {0}
