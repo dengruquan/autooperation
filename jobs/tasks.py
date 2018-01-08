@@ -63,7 +63,7 @@ def parse_setupinfo(setupdata, hostid):
         ass.save()
 
     except:
-        print "data=", data
+        print("data=", data) 
         pass
    
 
