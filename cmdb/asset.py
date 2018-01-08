@@ -174,7 +174,7 @@ def asset_hardware_update(request):
 
             tasks.run(id, ip, port, username, password)
         except:
-            print "asset_hardware_update error"
+            print("asset_hardware_update error") 
             pass
            
     return HttpResponse(json.dumps(ret))
