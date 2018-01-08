@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from .models import Host 
 from .forms import AssetForm
 from common import common
-from jobs imoprt tasks
+from jobs import tasks
 
 
 class AssetListAll(TemplateView):
