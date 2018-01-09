@@ -176,7 +176,7 @@ class AdHocRunner(object):
                                                            options=self.options)
         self.variable_manager.options_vars = load_options_vars(self.options)
         self.passwords = passwords or {}
-        self.inventory = InventoryManager(loader=loader, sources=options.inventory)
+        self.inventory = JMSInventoryManager(hosts)
         self.variable_manager.set_inventory(self.inventory)
         self.tasks = []
         self.play_source = None
