@@ -7,7 +7,7 @@ from common import mysshkey, common
 
 @shared_task
 def deal_sshkey(hostid, public_ip, ssh_port, user, passwd, cmd):
-	'''
+    '''
     ssh免密码登录
     @parameter public_ip : 主机外网ip
     @parameter ssh_port : 主机ssh端口
@@ -45,7 +45,7 @@ def parse_setupinfo(setupdata, hostid):
     @parameter setupdata: 硬件信息字典{}
     '''
     try:
-    	data = setupdata['contacted']['host'][0]['ansible_facts']
+        data = setupdata['contacted']['host'][0]['ansible_facts']
         hostname = data['ansible_nodename']
         os = " ".join((data['ansible_distribution'], data['ansible_distribution_version']))
         cpu_num = data["ansible_processor_vcpus"]
@@ -69,8 +69,8 @@ def parse_setupinfo(setupdata, hostid):
 
 @shared_task
 def DoShellCommand(cmd):
-	'''执行shell命令'''
-	Popen(cmd, shell = True)
+    '''执行shell命令'''
+    Popen(cmd, shell = True)
 
 
 def run(hostid, ip, port, username, password):
