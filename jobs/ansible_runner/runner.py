@@ -12,10 +12,9 @@ from ansible.parsing.dataloader import DataLoader
 from ansible.executor.playbook_executor import PlaybookExecutor
 from ansible.playbook.play  import Play
 import ansible.constants as C
-from ansible.utils.vars  import load_extra_vars
-from ansible.utils.vars  import load_options_vars
-
-from  .inventorys   import   JMSInventory
+from ansible.utils.vars load_extra_vars, load_options_vars
+from ansible.inventory.manager import InventoryManager
+# from  .inventorys   import   JMSInventory
 from  .callback     import   AdHocResultCallback, PlaybookResultCallBack, CommandResultCallback
 
 
@@ -74,7 +73,7 @@ class PlayBookRunner(object):
         self.loader = DataLoader()
         self.variable_manager = VariableManager()
         self.passwords = passwords or {}
-        self.inventory = JMSInventory(hosts)
+        self.inventory = JMSInventoryManager(hosts)
 
         self.options = self.Options(
             listtags=listtags,
@@ -177,7 +176,7 @@ class AdHocRunner(object):
                                                            options=self.options)
         self.variable_manager.options_vars = load_options_vars(self.options)
         self.passwords = passwords or {}
-        self.inventory = JMSInventory(hosts)
+        self.inventory = InventoryManager(loader=loader, sources=options.inventory)
         self.variable_manager.set_inventory(self.inventory)
         self.tasks = []
         self.play_source = None
