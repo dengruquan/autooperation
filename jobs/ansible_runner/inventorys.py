@@ -11,10 +11,11 @@ class JMSInventoryManager(InventoryManager):
         单机：[{ip:, port:, vars: {}}, {}]or 
         组：{group1:[{ip:, port:, vars: {}}, {}], }
         '''
-    loader = DataLoader()
-    super(JMSInventoryManager, self).__init__(loader = loader)
-    self.parse_inventory(hosts)
-    
+            loader = DataLoader()
+            super(JMSInventoryManager, self).__init__(loader = loader)
+            self.parse_inventory(hosts)
+            
+            
     def parse_inventory(hosts):
         
         try:
@@ -56,4 +57,4 @@ if __name__ == "__main__":
         },
     ]
     obj = JMSInventoryManager(hosts)
-    print obj.hosts
+    print(obj.hosts)
