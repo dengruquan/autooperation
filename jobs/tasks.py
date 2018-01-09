@@ -23,8 +23,8 @@ def deal_sshkey(hostid, public_ip, ssh_port, user, passwd, cmd):
     ansible_ssh_user = {2}
     ansible_ssh_pass = {3}'''.format(public_ip,  ssh_port, ssh_user, ssh_pass)
     
-	mysshkey.WriteHost(hosts)	
-	DoShellCommand(cmd)
+    mysshkey.WriteHost(hosts)	
+    DoShellCommand(cmd)
     #免密码登录后同步硬件信息
     run(hostid, public_ip, ssh_port, user, passwd)
 
