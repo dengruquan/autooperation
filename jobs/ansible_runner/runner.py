@@ -7,7 +7,7 @@ from collections import namedtuple,defaultdict
 
 
 from ansible.executor.task_queue_manager import TaskQueueManager
-from ansible.vars import VariableManager
+from ansible.vars.manager import VariableManager
 from ansible.parsing.dataloader import DataLoader
 from ansible.executor.playbook_executor import PlaybookExecutor
 from ansible.playbook.play  import Play
